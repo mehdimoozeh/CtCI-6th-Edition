@@ -17,7 +17,7 @@ public class Main {
         list1.insert(list1, "P");
          list1.print(list1);
 
-        list1.removeDup1(list1);
+        list1.removeDup2(list1);
         list1.print(list1);
     }
 }

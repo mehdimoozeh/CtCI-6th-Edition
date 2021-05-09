@@ -32,6 +32,24 @@ public class LinkedList {
         return list;
     }
 
+
+    public LinkedList removeDup2(LinkedList list) {
+        LinkedList.Node current = list.head;
+        while(current != null) {
+            LinkedList.Node pointer = current;
+
+            while (pointer.next != null) {
+                if (pointer.next.data == current.data) {
+                    pointer.next = pointer.next.next;
+                } else {
+                    pointer = pointer.next;
+                }
+            }
+            current = current.next;
+        }
+        return list;
+    }
+
     public LinkedList insert(LinkedList list, String data) {
         LinkedList.Node new_node = new LinkedList.Node(data);
         new_node.next = null;
