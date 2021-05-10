@@ -5,7 +5,7 @@ import java.util.HashSet;
 public class LinkedList {
     Library.LinkedList.Node head;
 
-    class Node {
+    public class Node {
         String data;
         Library.LinkedList.Node next;
 
@@ -35,7 +35,7 @@ public class LinkedList {
 
     public LinkedList removeDup2(LinkedList list) {
         LinkedList.Node current = list.head;
-        while(current != null) {
+        while (current != null) {
             LinkedList.Node pointer = current;
 
             while (pointer.next != null) {
@@ -53,7 +53,7 @@ public class LinkedList {
     public String KthTOLast(LinkedList list, int kthToLast) {
         LinkedList.Node node = list.head;
         LinkedList.Node pointer = list.head;
-        while(pointer != null) {
+        while (pointer != null) {
             if (kthToLast < 0) {
                 node = node.next;
             }
@@ -63,7 +63,18 @@ public class LinkedList {
         return node.data;
     }
 
-    public LinkedList insert(LinkedList list, String data) {
+    public void deleteMiddleNode(LinkedList.Node node) {
+        while (node.next != null) {
+            node.data = node.next.data;
+            if (node.next.next == null) {
+                node.next = null;
+            } else {
+                node = node.next;
+            }
+        }
+    }
+
+    public LinkedList.Node insert(LinkedList list, String data) {
         LinkedList.Node new_node = new LinkedList.Node(data);
         new_node.next = null;
 
@@ -76,7 +87,7 @@ public class LinkedList {
             }
             last.next = new_node;
         }
-        return list;
+        return new_node;
     }
 
     public void print(LinkedList list) {
