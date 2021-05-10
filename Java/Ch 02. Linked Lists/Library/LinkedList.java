@@ -50,6 +50,19 @@ public class LinkedList {
         return list;
     }
 
+    public String KthTOLast(LinkedList list, int kthToLast) {
+        LinkedList.Node node = list.head;
+        LinkedList.Node pointer = list.head;
+        while(pointer != null) {
+            if (kthToLast < 0) {
+                node = node.next;
+            }
+            kthToLast--;
+            pointer = pointer.next;
+        }
+        return node.data;
+    }
+
     public LinkedList insert(LinkedList list, String data) {
         LinkedList.Node new_node = new LinkedList.Node(data);
         new_node.next = null;
