@@ -74,6 +74,30 @@ public class LinkedList {
         }
     }
 
+    public void partition(LinkedList list, int partition) {
+        LinkedList.Node previous = null;
+        LinkedList.Node pointer = list.head;
+        LinkedList partitionedList = new LinkedList();
+        while (pointer != null) {
+            int data = Integer.parseInt(pointer.data);
+            if (data >= partition) {
+                partitionedList.insert(partitionedList, Integer.toString(data));
+                if (pointer.equals(list.head)) {
+                    list.head = pointer.next;
+                } else if (pointer.next != null) {
+                    previous.next = pointer.next;
+                } else if (pointer.next == null ) { // end of list
+                    pointer.next = partitionedList.head;
+                }
+            } else {
+                previous = pointer;
+            }
+            pointer = pointer.next;
+        }
+        list.print(list);
+        partitionedList.print(partitionedList);
+    }
+
     public LinkedList.Node insert(LinkedList list, String data) {
         LinkedList.Node new_node = new LinkedList.Node(data);
         new_node.next = null;
