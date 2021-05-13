@@ -98,6 +98,36 @@ public class LinkedList {
         partitionedList.print(partitionedList);
     }
 
+    public LinkedList sumLists(LinkedList list1, LinkedList list2) {
+        LinkedList.Node head1 = list1.head;
+        LinkedList.Node head2 = list2.head;
+
+        LinkedList result = new LinkedList();
+
+        int overflow = 0;
+        int sum = 0;
+
+        while (head1 != null || head2 != null) {
+            int digit1 = 0, digit2 = 0;
+            if (head1 != null) {
+                digit1 = Integer.parseInt(head1.data);
+                head1 = head1.next;
+            }
+            if (head2 != null) {
+                digit2 = Integer.parseInt(head2.data);
+                head2 = head2.next;
+            }
+
+            sum = (digit1 + digit2 + overflow);
+            overflow = sum / 10;
+            result.insert(result, Integer.toString(sum % 10));
+        }
+        if (overflow != 0) {
+            result.insert(result, Integer.toString(overflow));
+        }
+        return result;
+    }
+
     public LinkedList.Node insert(LinkedList list, String data) {
         LinkedList.Node new_node = new LinkedList.Node(data);
         new_node.next = null;
