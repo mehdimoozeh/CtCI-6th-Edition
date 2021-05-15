@@ -86,7 +86,7 @@ public class LinkedList {
                     list.head = pointer.next;
                 } else if (pointer.next != null) {
                     previous.next = pointer.next;
-                } else if (pointer.next == null ) { // end of list
+                } else if (pointer.next == null) { // end of list
                     pointer.next = partitionedList.head;
                 }
             } else {
@@ -126,6 +126,60 @@ public class LinkedList {
             result.insert(result, Integer.toString(overflow));
         }
         return result;
+    }
+
+    private void addPadding(LinkedList list1, LinkedList list2) {
+        LinkedList.Node pointer1 = list1.head;
+        LinkedList.Node pointer2 = list2.head;
+
+        while (pointer1 != null || pointer2 != null) {
+            if (pointer1 == null) {
+                LinkedList.Node zeroNode = new LinkedList.Node("0");
+                zeroNode.next = list1.head;
+                list1.head = zeroNode;
+            } else {
+                pointer1 = pointer1.next;
+            }
+
+            if (pointer2 == null) {
+                LinkedList.Node zeroNode = new LinkedList.Node("0");
+                zeroNode.next = list2.head;
+                list2.head = zeroNode;
+            } else {
+                pointer2 = pointer2.next;
+            }
+        }
+    }
+
+    private int sumNodes(LinkedList.Node n1, LinkedList.Node n2, LinkedList sum) {
+        int d1 = Integer.parseInt(n1.data);
+        int d2 = Integer.parseInt(n2.data);
+        int summation = 0;
+
+        if (n1.next != null) {
+            summation = sumNodes(n1.next, n2.next, sum);
+        }
+        int number = (d1 + d2 + summation);
+        LinkedList.Node digit = new LinkedList.Node(Integer.toString(number % 10));
+        digit.next = sum.head;
+        sum.head = digit;
+        return number / 10;
+    }
+
+    public void sumListsForward(LinkedList list1, LinkedList list2) {
+        addPadding(list1, list2);
+        LinkedList.Node firstDigit1 = list1.head;
+        LinkedList.Node firstDigit2 = list2.head;
+
+        LinkedList result = new LinkedList();
+        int lastDigit = sumNodes(firstDigit1, firstDigit2, result);
+        if (lastDigit > 0) {
+            LinkedList.Node digit = new LinkedList.Node(Integer.toString(lastDigit));
+            digit.next = result.head;
+            result.head = digit;
+        }
+
+        result.print(result);
     }
 
     public LinkedList.Node insert(LinkedList list, String data) {
