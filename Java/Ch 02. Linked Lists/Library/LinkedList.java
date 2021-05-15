@@ -182,6 +182,37 @@ public class LinkedList {
         result.print(result);
     }
 
+    private LinkedList reverseList(LinkedList list) {
+        LinkedList.Node pointer = list.head;
+        LinkedList reversedList = new LinkedList();
+        while (pointer != null) {
+            LinkedList.Node node = new LinkedList.Node(pointer.data);
+            node.next = reversedList.head;
+            reversedList.head = node;
+            pointer = pointer.next;
+        }
+        print(reversedList);
+        return reversedList;
+    }
+
+    private boolean compareLists(LinkedList list1, LinkedList list2) {
+        LinkedList.Node pointer1 = list1.head;
+        LinkedList.Node pointer2 = list2.head;
+        while (pointer1 != null && pointer2 != null) {
+            if (pointer1.data != pointer2.data) {
+                return false;
+            }
+            pointer1 = pointer1.next;
+            pointer2 = pointer2.next;
+        }
+        return true;
+    }
+
+    public boolean isPalindrome(LinkedList originalList) {
+        LinkedList reversedList = reverseList(originalList);
+        return compareLists(originalList, reversedList);
+    }
+
     public LinkedList.Node insert(LinkedList list, String data) {
         LinkedList.Node new_node = new LinkedList.Node(data);
         new_node.next = null;
