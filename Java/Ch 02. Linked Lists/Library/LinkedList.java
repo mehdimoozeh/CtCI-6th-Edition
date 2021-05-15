@@ -1,6 +1,7 @@
 package Library;
 
 import java.util.HashSet;
+import java.util.Stack;
 
 public class LinkedList {
     Library.LinkedList.Node head;
@@ -211,6 +212,32 @@ public class LinkedList {
     public boolean isPalindrome(LinkedList originalList) {
         LinkedList reversedList = reverseList(originalList);
         return compareLists(originalList, reversedList);
+    }
+
+    public boolean isPalindrome_RunnerTechnique(LinkedList list) {
+        LinkedList.Node turtle = list.head;
+        LinkedList.Node rabbit = list.head;
+
+        Stack<String> stack = new Stack<>();
+
+        while (rabbit != null && rabbit.next != null) {
+            stack.push(turtle.data);
+            turtle = turtle.next;
+            rabbit = rabbit.next.next;
+        }
+
+        if (rabbit != null) {
+            turtle = turtle.next;
+        }
+
+        while (turtle != null) {
+            String top = stack.pop();
+            if (top != turtle.data) {
+                return false;
+            }
+            turtle = turtle.next;
+        }
+        return true;
     }
 
     public LinkedList.Node insert(LinkedList list, String data) {

@@ -13,5 +13,8 @@ public class Main {
         sample.insert(sample, "0");
 
         System.out.println(sample.isPalindrome(sample));
+
+        boolean isPalindrome = sample.isPalindrome_RunnerTechnique(sample);
+        System.out.println(isPalindrome);
     }
 }
