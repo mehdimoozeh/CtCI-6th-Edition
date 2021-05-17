@@ -240,6 +240,30 @@ public class LinkedList {
         return true;
     }
 
+    public boolean intersection(LinkedList list1, LinkedList list2) {
+        if (list1 == null || list2 == null) return false;
+        LinkedList.Node head1 = list1.head;
+
+        while (head1 != null) {
+            LinkedList.Node head2 = list2.head;
+            while (head2 != null) {
+                if (head1.next.equals(head2.next)) {
+                    System.out.println("The intersection is: " + head2.next.data);
+                    return true;
+                }
+                head2 = head2.next;
+            }
+
+            head1 = head1.next;
+        }
+        return false;
+    }
+
+    public boolean link2Lists(LinkedList.Node intersectionNode, LinkedList.Node linkNode) {
+        linkNode.next = intersectionNode;
+        return true;
+    }
+
     public LinkedList.Node insert(LinkedList list, String data) {
         LinkedList.Node new_node = new LinkedList.Node(data);
         new_node.next = null;
