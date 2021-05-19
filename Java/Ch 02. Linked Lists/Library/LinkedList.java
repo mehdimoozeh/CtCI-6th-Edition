@@ -16,6 +16,30 @@ public class LinkedList {
         }
     }
 
+    public boolean detectLoop(LinkedList list) {
+        LinkedList.Node slow = list.head;
+        LinkedList.Node fast = list.head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                System.out.println(slow.data);
+                break;
+            }
+        }
+        if (fast == null || fast.next == null ){
+            return false;
+        }
+        slow = list.head;
+        while (slow != fast){
+            slow = slow.next;
+            fast = fast.next;
+        }
+        System.out.println(fast.data);
+        return true;
+    }
+
     public LinkedList removeDup1(LinkedList list) {
         HashSet<String> items = new HashSet<>();
         LinkedList.Node node = list.head;
