@@ -4,17 +4,20 @@ public class Stack implements IStack {
     private class Item {
         public int data;
         public Item next = null;
+
         public Item(int data) {
             this.data = data;
         }
     }
+
     private Item topItem = null;
 
-    public Stack() {}
+    public Stack() {
+    }
 
     @Override
     public void push(int data) {
-        Item item =  new Item(data);
+        Item item = new Item(data);
         item.next = topItem;
         this.topItem = item;
     }
@@ -35,5 +38,12 @@ public class Stack implements IStack {
             throw new Exception("Stack is empty!");
         }
         return topItem.data;
+    }
+
+    public boolean isEmpty() {
+        if (this.topItem == null) {
+            return true;
+        }
+        return false;
     }
 }
