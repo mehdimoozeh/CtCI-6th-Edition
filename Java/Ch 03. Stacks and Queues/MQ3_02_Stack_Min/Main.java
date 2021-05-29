@@ -2,23 +2,39 @@ package MQ3_02_Stack_Min;
 
 import helper.Stack;
 
+import java.util.Random;
+
 public class Main {
     public static void main(String args[]) {
-        Stack myStack = new Stack();
-        myStack.push(1);
-        myStack.push(2);
-        try {
-            myStack.pop();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        myStack.push(3);
+        Stack mainStack = new Stack();
+        Stack minStack = new Stack();
 
-        try {
-            System.out.println(myStack.pop());
-            System.out.println(myStack.pop());
-        } catch (Exception e) {
-            e.printStackTrace();
+        // Fill stack with random numbers
+        for (int i = 0; i < 100; i++) {
+            Random random = new Random();
+            int r = random.nextInt(100);
+            mainStack.push(r);
+            try {
+                if (minStack.isEmpty() || r <= minStack.getTop()) {
+                    minStack.push(r);
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        // Pop from stack and check the last minimum
+        for (int j = 0; j < 100; j++) {
+            try {
+                int min = minStack.getTop();
+                int top = mainStack.pop();
+                if (minStack.getTop() == top) {
+                    min = minStack.pop();
+                }
+                System.out.println("item popped: " + top + ", minimum: " + min);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
