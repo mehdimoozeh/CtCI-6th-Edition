@@ -13,6 +13,10 @@ public class Node<T> {
         this.right = null;
     }
 
+    public T getData() {
+        return data;
+    }
+
     public void setLeftChild(Node<T> node) {
         this.left = node;
         if (left != null) {
