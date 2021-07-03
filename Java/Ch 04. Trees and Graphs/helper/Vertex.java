@@ -19,4 +19,8 @@ public class Vertex<T> {
             System.out.println(this.data + " => " + neighbour.data);
         }
     }
+
+    public ArrayList<Vertex> getEdges() {
+        return edges;
+    }
 }

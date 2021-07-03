@@ -4,30 +4,28 @@ import helper.Vertex;
 
 public class Main {
     public static void main(String args[]) {
-/*        Node<Integer> leftNode = new Node<Integer>(2);
-        Node<Integer> rightNode = new Node<Integer>(3);
-        Node<Integer> rootNode = new Node<Integer>(1);
-        rootNode.setLeftChild(leftNode);
-        rootNode.setRightChild(rightNode);
-
-
-        rootNode.preOrderTraversal(rootNode);
-        System.out.println();
-        rootNode.inOrderTraversal(rootNode);
-        System.out.println();
-        rootNode.postOrderTraversal(rootNode);*/
-
         Graph graph = new Graph<Integer>();
         Vertex v1 = graph.addNewVertex(1);
         Vertex v2 = graph.addNewVertex(2);
         Vertex v3 = graph.addNewVertex(3);
         Vertex v4 = graph.addNewVertex(4);
+        Vertex v5 = graph.addNewVertex(5);
+        Vertex v6 = graph.addNewVertex(6);
+
+/*        v1.addEdge(v2);
+        v2.addEdge(v5);
+        v3.addEdge(v1);
+        v3.addEdge(v4);
+        v4.addEdge(v5);
+        v6.addEdge(v2);
+        v6.addEdge(v3);*/
 
         v1.addEdge(v2);
-        v1.addEdge(v4);
+        v2.addEdge(v3);
         v3.addEdge(v1);
-        v4.addEdge(v3);
 
         graph.printGraph();
+
+        graph.findPath(v1, v4);
     }
 }
