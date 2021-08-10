@@ -1,9 +1,8 @@
-package Q4_05_Validate_BST;
-
+package MQ4_05_Validate_BST;
 
 import helper.BST;
 
-public class MQ4_05_Validate_BST {
+public class Main {
     private static Integer last = null;
 
     public static void main(String args[]) {
