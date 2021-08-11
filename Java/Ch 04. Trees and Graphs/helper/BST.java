@@ -4,31 +4,47 @@ public class BST {
     private Integer val;
     private BST left;
     private BST right;
+    private BST parent;
 
     public BST() {
         this.val = null;
         left = null;
         right = null;
+        parent = null;
     }
 
     public BST(int data) {
         this.val = data;
         left = null;
         right = null;
+        parent = null;
+    }
+
+    public BST findOne(int data) {
+        if (data == this.val) return this;
+        if (data < this.val && this.left != null) return this.left.findOne(data);
+        if (data > this.val && this.right != null) return this.right.findOne(data);
+        return null;
     }
 
     public void insertNode(int data) {
         if (this.val == null) return;
         if (data <= this.val)
-            if (this.left == null)
+            if (this.left == null) {
                 this.left = new BST(data);
-            else
+                this.left.parent = this;
+            } else
                 this.left.insertNode(data);
         else if (data > this.val)
-            if (this.right == null)
+            if (this.right == null) {
                 this.right = new BST(data);
-            else
+                this.right.parent = this;
+            } else
                 this.right.insertNode(data);
+    }
+
+    public BST getParent() {
+        return parent;
     }
 
     public int getVal() {
