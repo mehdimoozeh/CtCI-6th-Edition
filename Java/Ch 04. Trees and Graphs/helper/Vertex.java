@@ -15,9 +15,12 @@ public class Vertex<T> {
     }
 
     public void printEdges() {
-        for (Vertex neighbour : edges) {
-            System.out.println(this.data + " => " + neighbour.data);
-        }
+        if (edges.isEmpty())
+            System.out.println(data);
+        else
+            for (Vertex neighbour : edges) {
+                System.out.println(this.data + " => " + neighbour.data);
+            }
     }
 
     public ArrayList<Vertex> getEdges() {
